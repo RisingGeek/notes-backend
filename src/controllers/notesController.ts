@@ -9,10 +9,14 @@ const router = Router();
 const notesService = new NotesService();
 
 // Creates a new note
-router.post("/", createNoteValidator, async (req: Request, res: Response) => {
-  console.log("create", createNoteValidator);
-  const newNote = await notesService.create(req.body);
-  res.status(201).json(newNote);
+router.post("/", createNoteValidator, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const newNote = await notesService.create(req.body);
+    res.status(201).json(newNote);
+  } catch (err) {
+    next(err);
+    console.error(err);
+  }
 });
 
 // Fetches a note by id
