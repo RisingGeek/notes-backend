@@ -18,10 +18,12 @@ router.post("/", createNoteValidator, async (req: Request, res: Response) => {
 // Fetches a note by id
 router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
-  const note = await notesService.getById(id).catch((error) => {
-    next(error);
-  });
-  res.status(200).json(note);
+  try {
+    const note = await notesService.getById(id);
+    res.status(200).json(note);
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Fetches all available notes

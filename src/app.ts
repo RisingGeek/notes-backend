@@ -22,7 +22,8 @@ connectDatabase();
 app.use(cors());
 // body-parser middleware to parse income request body
 app.use(bodyParser.json());
-app.use(errorHandler);
 app.use("/notes", notesController);
+app.use(errorHandler);
+
 
 export default app;
