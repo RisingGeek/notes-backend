@@ -1,24 +1,34 @@
 import NotesRepository from "repository/notesRepository";
 import { INote } from "types/note.type";
 
-const notesRespository = new NotesRepository();
 
-export const createNote = (note: INote) => {
-  return notesRespository.create(note);
-};
+// Notes Service Layer contains the business logic for Notes
+class NotesService {
+  private notesRepository: NotesRepository;
+  constructor() {
+    // Create an instance of NotesRepository
+    this.notesRepository = new NotesRepository();
+  }
 
-export const getNoteById = (id: string) => {
+  create = (note: INote) => {
+    return this.notesRepository.create(note);
+  };
 
-};
+  getById = (id: string) => {
+    return this.notesRepository.getById(id);
+  };
 
-export const getallNotes = () => {
+  getAll = () => {
+    return this.notesRepository.getAll();
+  };
 
-};
+  updateById = (id: string, note: INote) => {
+    return this.notesRepository.updatebyId(id, note);
+  };
 
-export const updateNoteById = (id: string, note: INote) => {
+  deleteById = (id: string) => {
+    return this.notesRepository.deleteById(id);
+  };
+}
 
-};
-
-export const deleteNoteById = (id: string) => {
-
-};
+export default NotesService;

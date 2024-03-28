@@ -1,6 +1,7 @@
 import { body, validationResult } from "express-validator";
 import { Request, Response, NextFunction } from "express";
 
+// Validates create note request
 export const createNoteValidator = [
   body("title").trim().not().isEmpty().withMessage("Title is required"),
   body("note").not().isEmpty().withMessage("Note is required"),
