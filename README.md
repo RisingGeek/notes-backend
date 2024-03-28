@@ -39,7 +39,9 @@ This is a CRUD (Create, Read, Update, Delete) application for managing notes. It
 
 8. `repository/`: The repository pattern is used to separate the logic that retrieves data from the database from the rest of the application. This directory contains classes or functions responsible for database operations.
 
-9. `config/`: Configuration files for the application, such as database configuration is stored here.   
+9. `config/`: Configuration files for the application, such as database configuration is stored here.  
+
+10. `types/`: This directory contains the type definition for Notes
 
 ## Benefits of Project Structure
 1. Code structure is easy to understand
