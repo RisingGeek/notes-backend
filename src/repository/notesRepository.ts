@@ -3,14 +3,12 @@ import { INote } from "types/note.type";
 
 class NotesRepository {
   async create(note: INote) {
-    console.log("repo");
     const newNote = new Note(note);
     try {
       await newNote.save();
     } catch (err) {
       throw err;
     }
-    console.log("inside");
 
     return newNote;
   }
