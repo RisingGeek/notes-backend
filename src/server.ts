@@ -10,8 +10,8 @@ process.on("uncaughtException", (error) => {
   console.error(error);
 });
 
-process.on("unhandledRejection", () => {
-
+process.on("unhandledRejection", (error) => {
+  console.error(error);
 });
 
 export default server;
