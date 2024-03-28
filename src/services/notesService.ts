@@ -15,7 +15,6 @@ class NotesService {
   };
 
   getById = (id: string) => {
-    // throw new Error("some error");
     return this.notesRepository.getById(id);
   };
 

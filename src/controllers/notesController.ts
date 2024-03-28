@@ -23,27 +23,43 @@ router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
     res.status(200).json(note);
   } catch (err) {
     next(err);
+    console.error(err);
   }
 });
 
 // Fetches all available notes
-router.get("/", async (req: Request, res: Response) => {
-  const notes = await notesService.getAll();
-  res.status(200).json(notes);
+router.get("/", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const notes = await notesService.getAll();
+    res.status(200).json(notes);
+  } catch (err) {
+    next(err);
+    console.error(err);
+  }
 });
 
 // Updates an existing note by id
-router.put("/", async (req: Request, res: Response) => {
-  const { id, note } = req.body;
-  const updatedNote = await notesService.updateById(id, note);
-  res.status(201).json(updatedNote);
+router.put("/", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id, note } = req.body;
+    const updatedNote = await notesService.updateById(id, note);
+    res.status(201).json(updatedNote);
+  } catch (err) {
+    next(err);
+    console.error(err);
+  }
 });
 
 // Deletes a note by id
-router.delete("/", async (req: Request, res: Response) => {
-  const { id } = req.body;
-  const deletedNote = await notesService.deleteById(id);
-  res.status(204).json(deletedNote);
+router.delete("/", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.body;
+    const deletedNote = await notesService.deleteById(id);
+    res.status(204).json(deletedNote);
+  } catch (err) {
+    next(err);
+    console.error(err);
+  }
 });
 
 export default router;
