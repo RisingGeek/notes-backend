@@ -43,9 +43,10 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
 });
 
 // Updates an existing note by id
-router.put("/", async (req: Request, res: Response, next: NextFunction) => {
+router.put("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id, note } = req.body;
+    const { note } = req.body;
+    const { id } = req.params;
     const updatedNote = await notesService.updateById(id, note);
     res.status(201).json(updatedNote);
   } catch (err) {
@@ -55,9 +56,9 @@ router.put("/", async (req: Request, res: Response, next: NextFunction) => {
 });
 
 // Deletes a note by id
-router.delete("/", async (req: Request, res: Response, next: NextFunction) => {
+router.delete("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
     const deletedNote = await notesService.deleteById(id);
     res.status(204).json(deletedNote);
   } catch (err) {
