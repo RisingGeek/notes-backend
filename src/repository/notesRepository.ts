@@ -3,20 +3,24 @@ import { INote } from "types/note.type";
 
 class NotesRepository {
   async create(note: INote) {
+    console.log("repo");
     const newNote = new Note(note);
     try {
       await newNote.save();
     } catch (err) {
-      throw new Error("Unable to create new Note");
+      throw err;
     }
+    console.log("inside");
+
+    return newNote;
   }
 
   async getById(id: string) {
     let note = null;
     try {
-      note = Note.findById(id);
+      note = await Note.findById(id);
     } catch (err) {
-      throw new Error("Unable to get note by id");
+      throw err;
     }
 
     return note;
@@ -26,8 +30,8 @@ class NotesRepository {
     let notes = [];
     try {
       notes = await Note.find();
-    } catch (e) {
-      throw new Error("Unable to get all notes");
+    } catch (err) {
+      throw err;
     }
     return notes;
   }
@@ -36,8 +40,8 @@ class NotesRepository {
     let note = null;
     try {
       note = await Note.findByIdAndUpdate(id, noteData);
-    } catch (e) {
-      throw new Error("Unable to update note");
+    } catch (err) {
+      throw err;
     }
     return note;
   }
@@ -46,8 +50,8 @@ class NotesRepository {
     let note = null;
     try {
       note = await Note.findByIdAndDelete(id);
-    } catch (e) {
-      throw new Error("Something went wrong!");
+    } catch (err) {
+      throw err;
     }
     return note;
   }

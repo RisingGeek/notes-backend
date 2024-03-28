@@ -3,6 +3,8 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { configDotenv } from "dotenv";
 import connectDatabase from "config/dbSetup";
+import notesController from "controllers/notesController";
+import errorHandler from "middleware/errorHandler";
 
 // ENV config
 configDotenv();
@@ -20,5 +22,7 @@ connectDatabase();
 app.use(cors());
 // body-parser middleware to parse income request body
 app.use(bodyParser.json());
+app.use(errorHandler);
+app.use("/notes", notesController);
 
 export default app;
